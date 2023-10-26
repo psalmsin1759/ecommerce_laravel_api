@@ -44,11 +44,11 @@ This is a Test-Driven Laravel E-commerce API project that includes factories, se
     php artisan serve
     ```
 
+    The API should be accessible at `http://localhost` (or another URL as specified).
+
 7. Running Tests
 
 -   This project is built using Test-Driven Development, so running tests is essential. To execute the tests, run:
-
-The API should be accessible at `http://localhost` (or another URL as specified).
 
 ```bash
 php artisan test
