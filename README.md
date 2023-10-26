@@ -188,4 +188,4 @@ Samson Ude
 
 ## Contact
 
--   If you have any questions or need further assistance, please feel free to contact us.
+-   If you have any questions or need further assistance, please feel free to contact us samson_ude@yahoo.com
