@@ -84,8 +84,8 @@ php artisan test
 -   POST api/customers ...................... customers.store › CustomerController@store
 -   GET|HEAD api/customers/create ............. customers.create › CustomerController@create
 -   GET|HEAD api/customers/{customer} ............. customers.show › CustomerController@show
--   -   PUT|PATCH api/customers/{customer} ......... customers.update › CustomerController@update
-        DELETE api/customers/{customer} ....... customers.destroy › CustomerController@destroy
+-   PUT|PATCH api/customers/{customer} ......... customers.update › CustomerController@update
+-   DELETE api/customers/{customer} ....... customers.destroy › CustomerController@destroy
 -   GET|HEAD api/customers/{customer}/edit ........ customers.edit › CustomerController@edit
 -   POST api/forgotpassword .............................. AuthController@forgotpassword
 -   GET|HEAD api/getfeaturedproduct ................... ProductController@getfeaturedproduct
@@ -147,21 +147,21 @@ php artisan test
 -   PUT|PATCH api/relatedproducts/{relatedproduct} relatedproducts.update › RelatedProductCo…
 -   DELETE api/relatedproducts/{relatedproduct} relatedproducts.destroy › RelatedProductC…
 -   GET|HEAD api/relatedproducts/{relatedproduct}/edit relatedproducts.edit › RelatedProduc…
-    GET|HEAD api/sliders ............................ sliders.index › SliderController@index
-    POST api/sliders ............................ sliders.store › SliderController@store
-    GET|HEAD api/sliders/create ................... sliders.create › SliderController@create
-    GET|HEAD api/sliders/{slider} ..................... sliders.show › SliderController@show
-    PUT|PATCH api/sliders/{slider} ................. sliders.update › SliderController@update
-    DELETE api/sliders/{slider} ............... sliders.destroy › SliderController@destroy
-    GET|HEAD api/sliders/{slider}/edit ................ sliders.edit › SliderController@edit
-    GET|HEAD api/wishlists ...................... wishlists.index › WishlistController@index
-    POST api/wishlists ...................... wishlists.store › WishlistController@store
-    GET|HEAD api/wishlists/create ............. wishlists.create › WishlistController@create
-    GET|HEAD api/wishlists/{wishlist} ............. wishlists.show › WishlistController@show
-    PUT|PATCH api/wishlists/{wishlist} ......... wishlists.update › WishlistController@update
-    DELETE api/wishlists/{wishlist} ....... wishlists.destroy › WishlistController@destroy
-    GET|HEAD api/wishlists/{wishlist}/edit ........ wishlists.edit › WishlistController@edit
-    GET|HEAD sanctum/csrf-cookie sanctum.csrf-cookie › Laravel\Sanctum › CsrfCookieControll…
+-   GET|HEAD api/sliders ............................ sliders.index › SliderController@index
+-   POST api/sliders ............................ sliders.store › SliderController@store
+-   GET|HEAD api/sliders/create ................... sliders.create › SliderController@create
+-   GET|HEAD api/sliders/{slider} ..................... sliders.show › SliderController@show
+-   PUT|PATCH api/sliders/{slider} ................. sliders.update › SliderController@update
+-   DELETE api/sliders/{slider} ............... sliders.destroy › SliderController@destroy
+-   GET|HEAD api/sliders/{slider}/edit ................ sliders.edit › SliderController@edit
+-   GET|HEAD api/wishlists ...................... wishlists.index › WishlistController@index
+-   POST api/wishlists ...................... wishlists.store › WishlistController@store
+-   GET|HEAD api/wishlists/create ............. wishlists.create › WishlistController@create
+-   GET|HEAD api/wishlists/{wishlist} ............. wishlists.show › WishlistController@show
+-   PUT|PATCH api/wishlists/{wishlist} ......... wishlists.update › WishlistController@update
+-   DELETE api/wishlists/{wishlist} ....... wishlists.destroy › WishlistController@destroy
+-   GET|HEAD api/wishlists/{wishlist}/edit ........ wishlists.edit › WishlistController@edit
+-   GET|HEAD sanctum/csrf-cookie sanctum.csrf-cookie › Laravel\Sanctum › CsrfCookieControll…
 
 ## Contributing
 
