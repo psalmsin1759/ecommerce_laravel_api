@@ -6,9 +6,80 @@ use App\Http\Requests\StoreSliderRequest;
 use App\Http\Requests\UpdateSliderRequest;
 use App\Models\Slider;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class SliderController extends Controller
 {
+
+    public function addSlider(Request $request){
+
+        $title = $request->title;
+        $subtitle = $request->subtitle;
+        $sortorder = $request->sortorder;
+
+        $slider = new Slider();
+        $slider->title = $title;
+        $slider->subtitle = $subtitle;
+        $slider->sort_order = $sortorder;
+
+        if ($request->hasFile("sliderimage")){
+            $destinationPath = "images/slider/";
+            $file = $request->sliderimage;
+            $extension = $file->getClientOriginalExtension();
+            $fileName = $title . rand(1111,9999) . "." . $extension;
+
+            $path = preg_replace('/\s+/', '', $fileName);
+
+            $file->move($destinationPath, $path);
+
+            $slider->image_path = $path;
+
+        }
+
+        $slider->save();
+
+        return redirect("slider");
+        
+
+    }
+
+    public function editSlider(Request $request){
+
+        $editsliderid = $request->editsliderid;
+        $edittitle = $request->edittitle;
+        $editsubtitle = $request->editsubtitle;
+        $editsortorder = $request->editsortorder;
+
+        $slider =  Slider::where("id", $editsliderid)->first();
+        $slider->title = $edittitle;
+        $slider->subtitle = $editsubtitle;
+        $slider->sort_order = $editsortorder;
+
+        if ($request->hasFile("sliderimage")){
+            $destinationPath = "images/slider/";
+            $file = $request->sliderimage;
+            $extension = $file->getClientOriginalExtension();
+            $fileName = $title . rand(1111,9999) . "." . $extension;
+
+            $path = preg_replace('/\s+/', '', $fileName);
+
+            $file->move($destinationPath, $path);
+
+            $slider->image_path = $path;
+
+        }
+
+
+        $slider->save();
+
+        return redirect("slider");
+
+    }
+
+    public function deleteSlider(Request $request){
+        $id = $request->id;
+        Slider::destroy($id);
+    }
     /**
      * Display a listing of the resource.
      */

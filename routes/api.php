@@ -19,6 +19,7 @@ use \App\Http\Controllers\AuthController;
 use \App\Http\Controllers\ProductCategoryController;
 use \App\Http\Controllers\CouponController;
 use \App\Http\Controllers\StripePaymentIntentController;
+use \App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,3 +59,7 @@ Route::post('login', [AuthController::class, "login"]);
 Route::post('register', [AuthController::class, "register"]);
 Route::post('forgotpassword', [AuthController::class, "forgotpassword"]);
 Route::post('changepassword', [AuthController::class, "changepassword"]);
+
+Route::post('placeOrder', [OrderController::class, "placeOrder"]);
+
+Route::resource('admins', AdminController::class);

@@ -10,6 +10,7 @@ class Customer extends Model
 {
     use HasFactory, HasApiTokens;
 
+    
 
     protected $fillable = [
         'first_name',

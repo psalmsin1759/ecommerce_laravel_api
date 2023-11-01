@@ -11,6 +11,7 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
+        'orderid',
         'first_name',
         'last_name',
         'email',
@@ -23,6 +24,7 @@ class Order extends Model
         'currency',
         'shipping_price',
         'shipping_address',
+        'shipping_postalcode',
         'shipping_city',
         'shipping_state',
         'shipping_country',

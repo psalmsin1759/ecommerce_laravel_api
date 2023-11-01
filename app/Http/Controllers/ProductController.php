@@ -7,10 +7,47 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use App\Models\RelatedProduct;
 use App\Models\ProductImage;
+use Illuminate\Http\Request;
+use App\Models\FeaturedProduct;
+use App\Models\ProductCategory;
+use App\Models\ProductVariant;
 
 
 class ProductController extends Controller
 {
+
+    public function addFeaturedProduct(Request $request){
+
+        $products = $request->products;
+        if ($products != null){
+            foreach($products as $value)    
+            {
+
+                $product = Product::find($value);
+                $product->featured = 1;
+                $product->save();
+                
+            }
+        }
+
+        return redirect("featuredproduct");
+    }
+
+    public function removeFromFeatured(Request $request){
+        $id = $request->id;
+
+        $product = Product::find($id);
+        $product->featured = 0;
+        $product->save();
+
+    }
+
+    public function deleteProduct(Request $request){
+        $id = $request->id;
+        Product::destroy($id);
+
+        return redirect ("/product");
+    }
 
 
     public function getfeaturedproduct(){
@@ -26,6 +63,153 @@ class ProductController extends Controller
             'message'   => "success",
             "data" => $products
         ]);
+    }
+
+    public function addProduct(Request $request){
+
+        $name = $request->productname;
+        $sku = $request->sku;
+        $description = $request->description;
+        $price = $request->price;
+        $discountedprice = $request->discountedprice;
+        $costprice = $request->costprice;
+        $quantity = $request->quantity;
+        $status = $request->status;
+        $sortorder = $request->sortorder;
+
+
+        $product = new Product();
+        $product->name = $name;
+        $product->sku = $sku;
+        $product->description = $description;
+        $product->price = $price;
+        $product->discounted_price = $discountedprice;
+        $product->cost_price = $costprice;
+        $product->quantity = $quantity;
+        $product->status = $status;
+        $product->sort_order = $sortorder;
+        $product->save();
+
+        $productID = $product->id;
+
+        /* $new = $request->new; 
+        if ($new != null){
+            $product->new = $new;
+        } */
+        
+        if ($request->hasFile("imageproductimage")){
+            $destinationPath = "images/product/";
+            $file = $request->imageproductimage;
+            $extension = $file->getClientOriginalExtension();
+            $fileName = $sku . rand(1111,9999) . "." . $extension;
+            $fileName = preg_replace('/\s+/', '', $fileName);
+            $file->move($destinationPath, $fileName);
+
+            ProductImage::create([
+                "product_id" => $productID,
+                "path" => $fileName
+            ]);
+            
+        }
+
+        if ($request->hasFile("imageproductimageone")){
+            $destinationPath = "images/product/";
+            $file = $request->imageproductimageone;
+            $extension = $file->getClientOriginalExtension();
+            $fileName = $sku . rand(1111,9999) . "." . $extension;
+            $fileName = preg_replace('/\s+/', '', $fileName);
+            $file->move($destinationPath, $fileName);
+
+            ProductImage::create([
+                "product_id" => $productID,
+                "path" => $fileName
+            ]);
+
+        }
+
+        if ($request->hasFile("imageproductimagetwo")){
+            $destinationPath = "images/product/";
+            $file = $request->imageproductimagetwo;
+            $extension = $file->getClientOriginalExtension();
+            $fileName = $sku . rand(1111,9999) . "." . $extension;
+            $fileName = preg_replace('/\s+/', '', $fileName);
+            $file->move($destinationPath, $fileName);
+
+            ProductImage::create([
+                "product_id" => $productID,
+                "path" => $fileName
+            ]);
+
+        }
+
+        
+
+        $category = $request->category;    
+        if ($category != null){
+            foreach($category as $value) 
+            {
+                
+                $cat = new \App\Models\ProductCategory();
+                $cat->category_id = $value;
+                $cat->product_id = $productID;
+                $cat->save();
+            }                                                                                                                                                                                                                                                                                                                                                                                                                               
+        }
+        
+
+
+        $related = $request->related;
+        if ($related != null){
+            foreach($related as $value) 
+            {
+                $cat = new \App\Models\RelatedProduct();
+                $cat->product_id = $productID;
+                $cat->related_product_id = $value;
+                $cat->save();
+            }
+        }
+
+        $options = $request->options;
+        
+         if ($options != null){
+            
+            $optionValueQuanityArray = preg_split ("/\,/", $options); 
+
+            foreach ($optionValueQuanityArray as $item){
+
+                //Size-18/18.5 (XXL):4
+
+                //Color-White:10
+
+            
+                $optionValueArray = explode(":", $item);
+
+                $optionValueName = $optionValueArray[0]; //Size-18/18.5 (XXL)
+                $optionQuantity = $optionValueArray[1]; //4
+
+                
+
+                //Color-White
+                $optionArray = explode("-", $optionValueName);
+                $optionName = $optionArray[0]; //Size
+                $optionValueName = $optionArray[1]; //18/18.5 (XXL)
+
+                ProductVariant::create([
+                    "product_id" => $productID,
+                    "option" => $optionName,
+                    "value" => $optionValueName,
+                    "quantity" => $optionQuantity
+                ]);
+
+
+            }
+
+
+            
+        } 
+        
+
+        return redirect("product");
     }
 
     /**

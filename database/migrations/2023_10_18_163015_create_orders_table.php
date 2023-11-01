@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('orderid')->nullable();
             $table->string('first_name');
             $table->string('last_name')->nullable();
             $table->string('email');
@@ -28,6 +29,7 @@ return new class extends Migration
 
             $table->string('shipping_address')->nullable();
             $table->string('shipping_city')->nullable();
+            $table->string('shipping_postalcode')->nullable();
             $table->string('shipping_state')->nullable();
             $table->string('shipping_country')->nullable();
 

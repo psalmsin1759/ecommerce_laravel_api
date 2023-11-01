@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string("subtitle",100)->nullable();
             $table->unsignedInteger("sort_order")->default(0);
             $table->string("image_path")->nullable();
+
+           
             $table->timestamps();
         });
     }

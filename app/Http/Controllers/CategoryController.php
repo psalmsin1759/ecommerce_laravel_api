@@ -5,9 +5,51 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+
+    public function addCategory(Request $request){
+        
+        $parent = $request->parent;
+        $name = $request->name;
+        $sortorder = $request->sortorder;
+
+        $category = Category::create([
+            "parent_id" => $parent,
+            "name" => $name,
+            "sort_order" => $sortorder
+        ]);
+
+        return redirect ("/category");
+
+    }
+
+    public function editCategory(Request $request){
+
+        $editcategoryid = $request->editcategoryid;
+        $name = $request->editcategoryname;
+        $editsortorder = $request->editsortorder;
+
+        $category = Category::find($editcategoryid);
+
+        $category->name = $name;
+        $category->sort_order = $editsortorder;  
+
+        $category->save();
+
+        return redirect("category");
+
+    }
+
+    public function deleteCategory(Request $request){
+
+        $id = $request->id;
+        Category::destroy($id);
+
+    }
+
     /**
      * Display a listing of the resource.
      */
