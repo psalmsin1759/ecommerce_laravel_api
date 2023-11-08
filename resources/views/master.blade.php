@@ -15,20 +15,20 @@
         <meta name="theme-color" content="#ffffff">
 
     <!-- plugin css file  -->
-    <link rel="stylesheet" href="{{asset("/dashboardassets/plugin/datatables/responsive.dataTables.min.css")}}">
-    <link rel="stylesheet" href="{{asset("dashboardassets/plugin/datatables/dataTables.bootstrap5.min.css")}}">
+    <link rel="stylesheet" href="{{asset("/plugin/datatables/responsive.dataTables.min.css")}}">
+    <link rel="stylesheet" href="{{asset("/plugin/datatables/dataTables.bootstrap5.min.css")}}">
 
-    <link rel="stylesheet" href="{{asset("dashboardassets/plugin/multi-select/css/multi-select.css")}}"><!-- Multi Select Css -->
-    <link rel="stylesheet" href="{{asset("dashboardassets/plugin/bootstrap-tagsinput/bootstrap-tagsinput.css")}}"><!-- Bootstrap Tagsinput Css -->
-    <link rel="stylesheet" href="{{asset("dashboardassets/plugin/cropper/cropper.min.css")}}"><!--Cropperer Css -->   
-    <link rel="stylesheet" href="{{asset("dashboardassets/plugin/dropify/dist/css/dropify.min.css")}}"/><!-- Dropify Css -->
+    <link rel="stylesheet" href="{{asset("/plugin/multi-select/css/multi-select.css")}}"><!-- Multi Select Css -->
+    <link rel="stylesheet" href="{{asset("/plugin/bootstrap-tagsinput/bootstrap-tagsinput.css")}}"><!-- Bootstrap Tagsinput Css -->
+    <link rel="stylesheet" href="{{asset("/plugin/cropper/cropper.min.css")}}"><!--Cropperer Css -->   
+    <link rel="stylesheet" href="{{asset("/plugin/dropify/dist/css/dropify.min.css")}}"/><!-- Dropify Css -->
 
 
       <!-- Select2 -->
-      <link rel="stylesheet" href="{{asset("dashboardassets/css/select2.min.css")}}">
+      <link rel="stylesheet" href="{{asset("/css/select2.min.css")}}">
 
     <!-- project css file  -->
-    <link rel="stylesheet" href="{{asset("dashboardassets/css/ebazar.style.min.css")}}">
+    <link rel="stylesheet" href="{{asset("/css/ebazar.style.min.css")}}">
 </head>
 <body>
     <div id="ebazar-layout" class="theme-blue">
@@ -175,7 +175,6 @@
                         <!-- Menu: Sub menu ul -->
                         <ul class="sub-menu collapse" id="store">
                             <li><a class="ms-link" href="{{url("/details")}}">Details</a></li>
-                            <li><a class="ms-link" href="{{url("/address")}}"> Store Address</a></li>
                             <li><a class="ms-link" href="{{url("/about")}}"> About/Privacy/Terms</a></li>
                             {{-- <li><a class="ms-link" href="{{url("/referral")}}"> Referral</a></li> --}}
                         </ul>
@@ -261,13 +260,13 @@
                                     <small>{{ Session::get('eszFullNames')}}</small>
                                 </div>
                                 <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
-                                    <img class="avatar lg rounded-circle img-thumbnail" src="{{asset("dashboardassets/images/lg/avatar4.svg")}}" alt="profile">
+                                    <img class="avatar lg rounded-circle img-thumbnail" src="{{asset("/images/lg/avatar4.svg")}}" alt="profile">
                                 </a>
                                 <div class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
                                     <div class="card border-0 w280">
                                         <div class="card-body pb-0">
                                             <div class="d-flex py-1">
-                                                <img class="avatar rounded-circle" src="{{asset("dashboardassets/images/lg/avatar4.svg")}}" alt="profile">
+                                                <img class="avatar rounded-circle" src="{{asset("/images/lg/avatar4.svg")}}" alt="profile">
                                                 <div class="flex-fill ms-3">
                                                     <p class="mb-0"><span class="font-weight-bold">{{ Session::get('eszFullNames')}}</span></p>
                                                     <small class="">{{ Session::get('eszEmail')}}</small>
@@ -319,34 +318,34 @@
         crossorigin="anonymous"></script>
 
     <!-- Jquery Core Js -->
-    <script src="{{asset("dashboardassets/bundles/libscripts.bundle.js")}}"></script>
+    <script src="{{asset("/bundles/libscripts.bundle.js")}}"></script>
 
-    <script src="{{asset("dashboardassets/bundles/dataTables.bundle.js")}}"></script>  
+    <script src="{{asset("/bundles/dataTables.bundle.js")}}"></script>  
 
     <!-- ChartJS -->
-    <script src="{{asset("/dashboardassets/js/Chart.min.js")}}"></script>
+    <script src="{{asset("//js/Chart.min.js")}}"></script>
 
      <!-- print -->
-     <script src="{{asset("/dashboardassets/js/jQuery.print.min.js")}}"></script>
+     <script src="{{asset("//js/jQuery.print.min.js")}}"></script>
 
    
 
    
-    <!--<script src="{{asset("dashboardassets/js/page/index.js")}}"></script>-->
+    <!--<script src="{{asset("/js/page/index.js")}}"></script>-->
 
     <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
-    <script src="{{asset("dashboardassets/plugin/multi-select/js/jquery.multi-select.js")}}"></script>
-    <script src="{{asset("dashboardassets/plugin/bootstrap-tagsinput/bootstrap-tagsinput.js")}}"></script>  
-    <script src="{{asset("dashboardassets/plugin/cropper/cropper.min.js")}}"></script>
-    <script src="{{asset("dashboardassets/bundles/dropify.bundle.js")}}"></script>
-    <script src="{{asset("dashboardassets/bundles/dataTables.bundle.js")}}"></script>
+    <script src="{{asset("/plugin/multi-select/js/jquery.multi-select.js")}}"></script>
+    <script src="{{asset("/plugin/bootstrap-tagsinput/bootstrap-tagsinput.js")}}"></script>  
+    <script src="{{asset("/plugin/cropper/cropper.min.js")}}"></script>
+    <script src="{{asset("/bundles/dropify.bundle.js")}}"></script>
+    <script src="{{asset("/bundles/dataTables.bundle.js")}}"></script>
 
-    <!--<script src="{{asset("dashboardassets/js/dashboard.js")}}"></script>-->
+    <!--<script src="{{asset("/js/dashboard.js")}}"></script>-->
 
-     <script src="{{asset("dashboardassets/js/template.js")}}"></script>
+     <script src="{{asset("/js/template.js")}}"></script>
 
     <!-- Select2 -->
-    <script src="{{asset("/dashboardassets/js/select2.full.min.js")}}"></script>
+    <script src="{{asset("//js/select2.full.min.js")}}"></script>
 
     <script>
         // project data table
@@ -898,6 +897,12 @@
 
                 ClassicEditor
                 .create( document.querySelector( '#editorprivacy' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
+
+                ClassicEditor
+                .create( document.querySelector( '#editorrefund') )
                 .catch( error => {
                     console.error( error );
                 } );

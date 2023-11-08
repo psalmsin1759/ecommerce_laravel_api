@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Customer;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
@@ -84,5 +86,20 @@ class CustomerController extends Controller
             'success'   => true,
             'message'   => "success",
         ]);
+    }
+
+    public function changeCustomerPassword(Request $request){
+        $customerid = $request->customerid;
+        $password = $request->password;
+
+        $customer = Customer::find($customerid);
+        $customer->password = bcrypt($password);
+        $customer->save();
+
+        return response()->json([
+            'success'   => true,
+            'message'   => "success",
+        ]);
+
     }
 }

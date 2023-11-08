@@ -38,7 +38,12 @@ class WishlistController extends Controller
             'customer_id' => 'required',
         ]);
 
-        $wishlist = Wishlist::create($data);
+        $wishlist = Wishlist::where("product_id", $data["product_id"])->where("customer_id", $data["customer_id"])->first();
+
+        if (!$wishlist){
+            $wishlist = Wishlist::create($data);
+        }
+        
 
         return response()->json([
             'success'   => true,
@@ -56,7 +61,11 @@ class WishlistController extends Controller
         $data = DB::table('wishlists')
             ->join('products', 'product_id', '=', 'products.id')
             ->join('customers', 'customer_id', '=', 'customers.id')
-            ->select('products.*')
+            ->join('product_images', function($join) {
+                $join->on('products.id', '=', 'product_images.product_id')
+                    ->whereRaw('product_images.id = (SELECT MIN(id) FROM product_images WHERE product_id = products.id)');
+            })
+            ->select('products.*',  'product_images.path as image_path', 'wishlists.id as wishlistid')
             ->where("wishlists.customer_id", $id)
             ->orderBy("wishlists.created_at", "desc")
             ->get();

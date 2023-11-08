@@ -13,6 +13,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Slider;
 use App\Models\Banner;
+use App\Models\Store;
 
 class Controller extends BaseController
 {
@@ -235,7 +236,8 @@ class Controller extends BaseController
     }
 
     public function details(){
-        return view ("store");
+        $store = Store::first();
+        return view ("store", compact("store"));
     }
 
     public function address(){
@@ -243,7 +245,8 @@ class Controller extends BaseController
     }
 
     public function about(){
-        return view ("about");
+        $store = Store::first();
+        return view ("about", compact("store"));
     }
 
     public function profile(){

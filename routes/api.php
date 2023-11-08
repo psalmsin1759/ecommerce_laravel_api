@@ -20,6 +20,7 @@ use \App\Http\Controllers\ProductCategoryController;
 use \App\Http\Controllers\CouponController;
 use \App\Http\Controllers\StripePaymentIntentController;
 use \App\Http\Controllers\AdminController;
+use \App\Http\Controllers\StoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,9 +54,9 @@ Route::get('applyCoupon/{coupon}', [CouponController::class, "applyCoupon"]);
 
 Route::post('create-payment-intent', [StripePaymentIntentController::class, "create"]);
 
+Route::post("changeCustomerPassword", [CustomerController::class, "changeCustomerPassword"]);
 
-
-Route::post('login', [AuthController::class, "login"]);
+Route::post('login', [AuthController::class, "webLogin"]);
 Route::post('register', [AuthController::class, "register"]);
 Route::post('forgotpassword', [AuthController::class, "forgotpassword"]);
 Route::post('changepassword', [AuthController::class, "changepassword"]);
@@ -63,3 +64,12 @@ Route::post('changepassword', [AuthController::class, "changepassword"]);
 Route::post('placeOrder', [OrderController::class, "placeOrder"]);
 
 Route::resource('admins', AdminController::class);
+
+Route::resource('store', StoreController::class);
+
+Route::get("getOrdersByCustomer/{customerID}",[ OrderController::class, "getOrdersByCustomer"]);
+
+Route::get("getOrdersByOrderID/{orderID}",[ OrderController::class, "getOrdersByOrderID"]);
+
+Route::get("getOrderItemFromID/{orderID}",[ OrderController::class, "getOrderItemFromID"]);
+

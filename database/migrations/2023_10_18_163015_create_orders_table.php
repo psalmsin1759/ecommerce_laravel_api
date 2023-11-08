@@ -24,7 +24,9 @@ return new class extends Migration
             $table->string('status');
             $table->double('discount')->default(0.0);
             $table->string('currency', 15)->nullable();
-
+            $table->string('payment_gateway', 20)->nullable();
+            $table->string('transaction_ref', 50)->nullable();
+            $table->string('currency', 15)->nullable();
             $table->decimal('shipping_price', 10, 2)->default(0.0);
 
             $table->string('shipping_address')->nullable();

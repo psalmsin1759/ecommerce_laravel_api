@@ -13,22 +13,22 @@
         <meta name="website" content="https://nodirectmessage.com" />
         <meta name="Version" content="v3.8.0" />
         <!-- favicon -->
-        <link rel="apple-touch-icon" sizes="180x180" href="{{asset("/dashboardassets/images/favicon/apple-touch-icon.png")}}">
-        <link rel="icon" type="image/png" sizes="32x32" href="{{asset("/dashboardassets/images/favicon/favicon-32x32.png")}}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{{asset("/dashboardassets/images/favicon/favicon-16x16.png")}}">
-        <link rel="manifest" href="{{asset("/dashboardassets/images/favicon/site.webmanifest")}}">
-        <link rel="mask-icon" href="{{asset("/dashboardassets/images/favicon/safari-pinned-tab.svg")}}" color="#4566D8">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{asset("/images/favicon/apple-touch-icon.png")}}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{asset("/images/favicon/favicon-32x32.png")}}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{asset("/images/favicon/favicon-16x16.png")}}">
+        <link rel="manifest" href="{{asset("/images/favicon/site.webmanifest")}}">
+        <link rel="mask-icon" href="{{asset("/images/favicon/safari-pinned-tab.svg")}}" color="#4566D8">
         <meta name="msapplication-TileColor" content="#4566D8">
         <meta name="theme-color" content="#ffffff">
         
         <!-- Bootstrap -->
-        <link href="{{asset("dashboardassets/css/bootstrap.min.css")}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset("css/bootstrap.min.css")}}" rel="stylesheet" type="text/css" />
         <!-- Icons -->
-        <link href="{{asset("dashboardassets/css/materialdesignicons.min.css")}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset("/css/materialdesignicons.min.css")}}" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
         <!-- Main Css -->
-        <link href="{{asset("dashboardassets/css/style.css")}}" rel="stylesheet" type="text/css" id="theme-opt" />
-        <link href="{{asset("dashboardassets/css/colors/default.css")}}" rel="stylesheet" id="color-opt">
+        <link href="{{asset("/css/style.css")}}" rel="stylesheet" type="text/css" id="theme-opt" />
+        <link href="{{asset("/css/colors/default.css")}}" rel="stylesheet" id="color-opt">
 
     </head>
 
@@ -91,14 +91,14 @@
        
 
         <!-- javascript -->
-        <script src="{{asset("dashboardassets/js/bootstrap.bundle.min.js")}}"></script>
+        <script src="{{asset("/js/bootstrap.bundle.min.js")}}"></script>
         <!-- Icons -->
-        <script src="{{asset("dashboardassets/js/feather.min.js")}}"></script>
+        <script src="{{asset("/js/feather.min.js")}}"></script>
         <!-- Switcher -->
-        <script src="{{asset("dashboardassets/js/switcher.js")}}"></script>
+        <script src="{{asset("/js/switcher.js")}}"></script>
         <!-- Main Js -->
-        <script src="{{asset("dashboardassets/js/plugins.init.js")}}"></script><!--Note: All init js like tiny slider, counter, countdown, maintenance, lightbox, gallery, swiper slider, aos animation etc.-->
-        <script src="{{asset("dashboardassets/js/app.js")}}"></script><!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->        
+        <script src="{{asset("/js/plugins.init.js")}}"></script><!--Note: All init js like tiny slider, counter, countdown, maintenance, lightbox, gallery, swiper slider, aos animation etc.-->
+        <script src="{{asset("/js/app.js")}}"></script><!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->        
     </body>
 
 </html>

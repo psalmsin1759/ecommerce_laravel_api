@@ -23,6 +23,8 @@ class Order extends Model
         'discount',
         'currency',
         'shipping_price',
+        'payment_gateway',
+        'transaction_ref',
         'shipping_address',
         'shipping_postalcode',
         'shipping_city',

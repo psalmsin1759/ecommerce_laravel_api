@@ -29,6 +29,8 @@ class StoreOrderRequest extends FormRequest
             'email' => 'required|email',
             'payment_method' => 'required|string',
             'total_price' => 'required|numeric',
+            'payment_gateway' => 'required',
+            'transaction_ref' => 'required',
             'status' => 'required|string',
             'currency' => 'string',
             'shipping_price' => 'numeric',

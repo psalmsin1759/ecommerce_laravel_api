@@ -30,6 +30,8 @@ class CheckoutRequest extends FormRequest
             'email' => 'required|email',
             'phone' => 'sometimes|string|max:20',
             'payment_method' => 'required|string',
+            'payment_gateway' => 'required',
+            'transaction_ref' => 'required',
             'total_price' => 'required|numeric',
             'tax' => 'sometimes|numeric',
             'status' => 'required|string',

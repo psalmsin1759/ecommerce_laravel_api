@@ -8,6 +8,7 @@ use \App\Http\Controllers\SliderController;
 use \App\Http\Controllers\BannerController;
 use \App\Http\Controllers\ProductController;
 use \App\Http\Controllers\OrderController;
+use \App\Http\Controllers\StoreController;
 
 
 Route::get('/', [Controller::class, "login"]);
@@ -81,3 +82,6 @@ Route::post('product/delete', [ProductController::class, "deleteProduct"]);
 Route::post('product/add', [ProductController::class, "addProduct"]);
 
 Route::get('/order/{id}', [OrderController::class, "orderDetails"]);
+
+Route::post('store/edit', [StoreController::class, "updateStore"]);
+Route::post('about', [StoreController::class, "aboutAction"]);

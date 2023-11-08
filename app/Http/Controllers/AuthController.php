@@ -56,7 +56,7 @@ class AuthController extends Controller
         ]);
     }
     
-    public function login (LoginRequest $request){
+    public function webLogin (LoginRequest $request){
 
         $data = $request->validated();
 
