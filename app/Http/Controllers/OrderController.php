@@ -51,20 +51,24 @@ class OrderController extends Controller
             $orderID = $order->id;
     
             if ($data["create_account"] == "true"){
-                $customer = Customer::create([
-                    'first_name' => $data["first_name"],
-                    'last_name' => $data["last_name"],
-                    'email' => $data["email"],
-                    'phone' => $data["phone"],
-                    'password' => bcrypt($data["password"]),
-                    'code' =>  md5($data["email"]),
-                    'status' => 1,
-                    'address' => $data["shipping_address"],
-                    'city' => $data["shipping_city"],
-                    'postal_code' => $data["shipping_postalcode"],
-                    'state' => $data["shipping_state"],
-                    'country' => $data["shipping_country"],
-                ]);
+                $customerCheck = Customer::where("email", $data["email"])->first();
+                if (!$customerCheck){
+                    $customer = Customer::create([
+                        'first_name' => $data["first_name"],
+                        'last_name' => $data["last_name"],
+                        'email' => $data["email"],
+                        'phone' => $data["phone"],
+                        'password' => bcrypt($data["password"]),
+                        'code' =>  md5($data["email"]),
+                        'status' => 1,
+                        'address' => $data["shipping_address"],
+                        'city' => $data["shipping_city"],
+                        'postal_code' => $data["shipping_postalcode"],
+                        'state' => $data["shipping_state"],
+                        'country' => $data["shipping_country"],
+                    ]);
+                }
+                
             }
     
             $orderIDString = $order->orderid;
@@ -266,5 +270,18 @@ class OrderController extends Controller
             "item" => $orderDetails
         ]);
 
+    }
+
+    public function changeOrderStatus(Request $request){
+        $orderid = $request->orderid;
+        $orderstatus = $request->orderstatus;
+
+        $order = Order::find($orderid);
+        $order->status = $orderstatus;
+        $order->save();
+
+        //send email
+
+        return redirect ("order/" . $orderid)->with('success','Order status updated to ' . $orderstatus);
     }
 }

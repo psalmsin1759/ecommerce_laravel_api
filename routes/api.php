@@ -21,6 +21,7 @@ use \App\Http\Controllers\CouponController;
 use \App\Http\Controllers\StripePaymentIntentController;
 use \App\Http\Controllers\AdminController;
 use \App\Http\Controllers\StoreController;
+use \App\Http\Controllers\FaqsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,3 +74,7 @@ Route::get("getOrdersByOrderID/{orderID}",[ OrderController::class, "getOrdersBy
 
 Route::get("getOrderItemFromID/{orderID}",[ OrderController::class, "getOrderItemFromID"]);
 
+
+Route::post("contactform", [CustomerController::class, "contactForm"]);
+
+Route::resource('faqs', FaqsController::class);

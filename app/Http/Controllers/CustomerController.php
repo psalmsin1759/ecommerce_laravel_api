@@ -102,4 +102,19 @@ class CustomerController extends Controller
         ]);
 
     }
+
+    public function contactForm(Request $request){
+        $name = $request->name;
+        $email = $request->email;
+        $phone = $request->phone;
+        $message = $request->message;
+
+        //Send Email to Admin
+
+        return response()->json([
+            'success'   => true,
+            'message'   => "success",
+        ]);
+
+    }
 }

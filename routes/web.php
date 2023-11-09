@@ -85,3 +85,6 @@ Route::get('/order/{id}', [OrderController::class, "orderDetails"]);
 
 Route::post('store/edit', [StoreController::class, "updateStore"]);
 Route::post('about', [StoreController::class, "aboutAction"]);
+
+
+Route::post('/order/status', [OrderController::class, "changeOrderStatus"]);

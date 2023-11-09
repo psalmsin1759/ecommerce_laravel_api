@@ -10,7 +10,7 @@
             <div class="border-0 mb-4"> 
                 <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
                     <h3 class="fw-bold mb-0">Order Details: #Order-{{$order->orderid}}</h3>
-                    <div class="col-auto d-flex btn-set-task w-sm-100 align-items-center">
+                   {{--  <div class="col-auto d-flex btn-set-task w-sm-100 align-items-center">
                         <select class="form-select" aria-label="Default select example">
                             <option selected="">Select Order Id</option>
                             <option value="1">Order-78414</option>
@@ -21,10 +21,13 @@
                             <option value="6">Order-78419</option>
                             <option value="7">Order-78420</option>
                         </select>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div> <!-- Row end  -->
+        <div>
+            @include('flash-message')
+        </div>
         <div class="row g-3 mb-3 row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 row-cols-xl-4">
             <div class="col">
                 <div class="alert-success alert mb-0">
@@ -105,7 +108,7 @@
                 <div class="card">
                     <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
                         <h6 class="mb-0 fw-bold ">Invoice Details</h6>
-                        <a href="{{url("/vendor/invoice/" . $order->id)}}" class="text-muted">View</a>
+                       {{--  <a href="{{url("/vendor/invoice/" . $order->id)}}" class="text-muted">View</a> --}}
                     </div>
                     <div class="card-body">
                         <div class="row g-3">
@@ -113,14 +116,14 @@
                                 <label class="form-label col-6 col-sm-5">Number:</label>
                                 <span><strong>#{{$order->orderid}}</strong></span>
                             </div>
-                            <!--<div class="col-12">
-                                <label class="form-label col-6 col-sm-5">Seller GST :</label>
-                                <span><strong>AFQWEPX17390VJ</strong></span>
+                            <div class="col-12">
+                                <label class="form-label col-6 col-sm-5">Payment Gateway :</label>
+                                <span><strong>{{$order->payment_gateway}}</strong></span>
                             </div>
                             <div class="col-12">
-                                <label class="form-label col-6 col-sm-5">Purchase GST :</label>
-                                <span><strong>NVFQWEPX1730VJ</strong></span>
-                            </div>-->
+                                <label class="form-label col-6 col-sm-5">Transaction Reference :</label>
+                                <span><strong>{{$order->transaction_ref}}</strong></span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -178,6 +181,11 @@
                                     <div class="single-total">
                                         <p class="value">Shipping(+):</p>
                                         <p class="price">{{ Session::get('eszCurrencySymbol')}} {{$order->shipping_price}}</p>
+                                    </div>
+
+                                    <div class="single-total">
+                                        <p class="value">Discount(-):</p>
+                                        <p class="price">{{ Session::get('eszCurrencySymbol')}} {{$order->discount}}</p>
                                     </div>
                                     
                                     <div class="single-total total-payable">
