@@ -116,7 +116,7 @@
                         <ul class="sub-menu collapse" id="menu-sale">
                             <li><a class="ms-link" href="{{url("/coupon")}}">Coupons List</a></li>
                             <li><a class="ms-link" href="{{url("/mail")}}">Send Mail</a></li>
-                            <li><a class="ms-link" href="{{url("/newsletter")}}">Newsletter Subscribers</a></li>
+                            {{-- <li><a class="ms-link" href="{{url("/newsletter")}}">Newsletter Subscribers</a></li> --}}
                         </ul>
                     </li>
 
@@ -126,8 +126,8 @@
                         <!-- Menu: Sub menu ul -->
                         <ul class="sub-menu collapse" id="menu-inventory">
                             <li><a class="ms-link" href="{{url("/stocklist")}}">Stock List</a></li>
-                            {{-- <li><a class="ms-link" href="{{url("/purchase")}}">Purchase</a></li> --}}
-                            <li><a class="ms-link" href="{{url("/returns")}}">Returns</a></li>
+                            {{-- <li><a class="ms-link" href="{{url("/purchase")}}">Purchase</a></li>
+                            <li><a class="ms-link" href="{{url("/returns")}}">Returns</a></li>  --}}
                         </ul>
                     </li>
                     {{-- <li class="collapsed">
@@ -257,7 +257,7 @@
                             <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
                                 <div class="u-info me-2">
                                     <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">{{ Session::get('eszStorename')}}</span></p>
-                                    <small>{{ Session::get('eszFullNames')}}</small>
+                                    <small>{{ Session::get('name')}}</small>
                                 </div>
                                 <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
                                     <img class="avatar lg rounded-circle img-thumbnail" src="{{asset("/images/lg/avatar4.svg")}}" alt="profile">
@@ -268,8 +268,8 @@
                                             <div class="d-flex py-1">
                                                 <img class="avatar rounded-circle" src="{{asset("/images/lg/avatar4.svg")}}" alt="profile">
                                                 <div class="flex-fill ms-3">
-                                                    <p class="mb-0"><span class="font-weight-bold">{{ Session::get('eszFullNames')}}</span></p>
-                                                    <small class="">{{ Session::get('eszEmail')}}</small>
+                                                    <p class="mb-0"><span class="font-weight-bold">{{ Session::get('name')}}</span></p>
+                                                    <small class="">{{ Session::get('email')}}</small>
                                                 </div>
                                             </div>
                                             
@@ -323,10 +323,10 @@
     <script src="{{asset("/bundles/dataTables.bundle.js")}}"></script>  
 
     <!-- ChartJS -->
-    <script src="{{asset("//js/Chart.min.js")}}"></script>
+    <script src="{{asset("/js/Chart.min.js")}}"></script>
 
      <!-- print -->
-     <script src="{{asset("//js/jQuery.print.min.js")}}"></script>
+     <script src="{{asset("/js/jQuery.print.min.js")}}"></script>
 
    
 
@@ -345,7 +345,7 @@
      <script src="{{asset("/js/template.js")}}"></script>
 
     <!-- Select2 -->
-    <script src="{{asset("//js/select2.full.min.js")}}"></script>
+    <script src="{{asset("/js/select2.full.min.js")}}"></script>
 
     <script>
         // project data table
@@ -622,6 +622,28 @@
                     }
                 });
 
+                $(".delete-editproductcategory").click(function (e) {
+                    e.preventDefault();
+
+                    var ele = $(this);
+
+                    var id = ele.attr("data-id");
+                    //console.log(id);
+
+
+                    if(confirm("Are you sure")) {
+                        $.ajax({
+                            url: '{{ url('delete-productcategory') }}',
+                            method: "POST",
+                            data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id")},
+                            success: function (response) {
+                                //console.log(response);
+                                window.location.reload();
+                            }
+                        });
+                    }
+                });
+
                 // delete edit subcategory
                 $(".delete-editsubcategory").click(function (e) {
                     e.preventDefault();
@@ -878,6 +900,12 @@
                 } );
 
                 ClassicEditor
+                .create( document.querySelector( '#editormail' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
+
+                ClassicEditor
                 .create( document.querySelector( '#editorabout' ) )
                 .catch( error => {
                     console.error( error );
@@ -1127,7 +1155,7 @@
                     
                     if(confirm("Are you sure")) {
                         $.ajax({
-                            url: '{{ url('delete-vendor-admin') }}',
+                            url: '{{ url('delete-admin') }}',
                             method: "POST",
                             data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id")},
                             success: function (response) {

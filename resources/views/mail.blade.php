@@ -7,7 +7,7 @@
     <div class="container-xxl">
         @include('flash-message')
 
-    <form method="POST"  action="{{url("/vendor/mail/send")}}" >
+    <form method="POST"  action="{{url("/mail/send")}}" >
         {{ csrf_field() }}
         <div class="row align-items-center">
             <div class="border-0 mb-4">
@@ -29,17 +29,17 @@
                     <div class="card-body">
                         
                             <div class="row g-3 align-items-center">
-                                <div class="col-md-12">
+                                {{-- <div class="col-md-12">
                                     <label  class="form-label">From</label>
                                     <input required type="text" class="form-control" name="productname" value="" placeholder="From:" readonly >
-                                </div>
+                                </div> --}}
                                
                                 
                                 <div class="col-md-12">
                                     <label for="to">To:</label>
                                     <select name="destination" id="destination" class="form-control" required>      
                                         <option value="" selected="selected">- Select -</option>    
-                                        <option value="newsletter" >All Newsletter Subscriber</option>   
+                                       {{--  <option value="newsletter" >All Newsletter Subscriber</option>    --}}
                                         <option value="allcustomer" >All Customer</option> 
                                         <option value="customer" >Customers</option> 
                                         <option value="specificemail" >Specific Email</option>                  
@@ -50,9 +50,9 @@
                                     
                                         <label for="exampleInputEmail1">Pick Customer(s)</label>
                                         <select name="customers[]" class="select2" multiple="multiple" data-placeholder="Pick Customer" style="width: 100%;">
-                                           {{--  @foreach($customers as $item)
+                                             @foreach($customers as $item)
                                                 <option value="{{$item->email}}">{{$item->first_name}} {{$item->last_name}} </option>
-                                            @endforeach --}}
+                                            @endforeach 
                                                         
                                         </select>
                                    
@@ -75,10 +75,11 @@
             
                                 <div class="col-12">
                                    
+                                    <textarea id="editor" name="body" required>
+                                      <p>Enter mail body here</p>
+                                   </textarea>
                                        
-                                        <div id="editor" name="description">
-                                            <h4>Enter Body Here</h4>
-                                        </div>
+                                      
                                    
                                 </div>
             

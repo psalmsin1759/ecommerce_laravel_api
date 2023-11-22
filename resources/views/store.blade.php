@@ -47,7 +47,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label  class="form-label">Email</label>
+                                    <label  class="form-label">Email (Receive order notification with this email)</label>
                                     <input value="{{$store ? $store->email : ''}}"  required type="email" class="form-control" name="email" placeholder="Email">
                                 </div>
 

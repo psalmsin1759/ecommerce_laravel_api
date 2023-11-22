@@ -92,6 +92,10 @@
                                 <span><strong>{{$order->shipping_address}},{{$order->shipping_city}}, {{$order->shipping_state}},  {{$order->shipping_country}}</strong></span>
                             </div>
                             <div class="col-12">
+                                <label class="form-label col-6 col-sm-5">Email:</label>
+                                <span><strong>{{$order->email}}</strong></span>
+                            </div>
+                            <div class="col-12">
                                 <label class="form-label col-6 col-sm-5">Phone:</label>
                                 <span><strong>{{$order->phone}}</strong></span>
                             </div>

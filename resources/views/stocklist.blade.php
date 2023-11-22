@@ -31,14 +31,14 @@
                             <tbody>
 
 
-                                {{-- @php $color = null; $value = null; @endphp
+                             @php $color = null; $value = null; @endphp
 
-                                @foreach($product as $item)
+                                @foreach($products as $item)
 
                                 @if ($item->quantity == 0)
                                     @php $color = "danger"; $value="Out of stock" @endphp
                                 @else
-                                    @php $color = "success"; $value="Sell" @endphp
+                                    @php $color = "success"; $value="In Stock" @endphp
                     
                                 @endif
 
@@ -47,7 +47,7 @@
                                     <td>
                                         <b>{{$item->sku}} </b>
                                     </td>
-                                    <td><a href="{{url("vendor/product/" . $item->id)}}" class="fw-bold"><img src="{{asset("images/products/" . $item->base_image_path)}}" class="avatar lg rounded me-2" alt="profile-image"><span> {{$item->name}} </span></a></td>
+                                    <td><a href="{{url("vendor/product/" . $item->id)}}" class="fw-bold"><img src="{{asset("images/product/" . $item->images->first()->path)}}" class="avatar lg rounded me-2" alt="profile-image"><span> {{$item->name}} </span></a></td>
                                     
                                     
                                     <td>
@@ -64,7 +64,7 @@
                                     
                                 </tr>
 
-                                @endforeach --}}
+                                @endforeach 
 
                                
                               

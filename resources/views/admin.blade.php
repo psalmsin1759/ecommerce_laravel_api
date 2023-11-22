@@ -32,11 +32,11 @@
                             </thead>
                             <tbody>
 
-                               {{--  @foreach($admin as $item)
+                              @foreach($admin as $item)
 
                                 <tr>
                                     
-                                    <td >{{$item->full_names}} </td>
+                                    <td >{{$item->first_name}} {{$item->last_name}} </td>
                                     <td>{{$item->email}} </td>
                                     <td >{{$item->role}} </td>
                                     <td >{{$item->status}}
@@ -44,13 +44,13 @@
                                     
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                            <a type="button" class="btn btn-outline-secondary edit-admin"  data-bs-toggle="modal" data-bs-target="#expedit" data-id="{{$item->id}}" data-name="{{$item->full_names}}" data-status="{{$item->status}}" data-role="{{$item->role}}"  data-created="{{$item->created_at}}" ><i class="icofont-edit text-success"></i></a>
+                                            <a type="button" class="btn btn-outline-secondary edit-admin"  data-bs-toggle="modal" data-bs-target="#expedit" data-id="{{$item->id}}" data-name="{{$item->first_name}}" data-status="{{$item->status}}" data-role="{{$item->role}}"  data-created="{{$item->created_at}}" ><i class="icofont-edit text-success"></i></a>
                                             <a type="button" class="btn btn-outline-secondary delete-admin" data-id="{{$item->id}}"><i class="icofont-ui-delete text-danger"></i></a>
                                         </div>
                                     </td>
                                 </tr>
 
-                                @endforeach --}}
+                                @endforeach 
 
                                
                               
@@ -73,7 +73,7 @@
             <h5 class="modal-title  fw-bold" id="expaddLabel"> Add Administrator</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form method="POST" action="{{url("/vendor/admin/add")}}" >
+        <form method="POST" action="{{url("admins")}}" >
 
         <div class="modal-body">
            
@@ -83,8 +83,12 @@
 
                     <div class="row g-3 mb-3">
                         <div class="col-sm-12">
-                            <label for="depone" class="form-label">Name</label>
-                            <input  required type="text" class="form-control" name="name" placeholder="Name">
+                            <label for="depone" class="form-label">First Name</label>
+                            <input  required type="text" class="form-control" name="first_name" placeholder="Name">
+                        </div>
+                        <div class="col-sm-12">
+                            <label for="depone" class="form-label">Last Name</label>
+                            <input  required type="text" class="form-control" name="last_name" placeholder="Name">
                         </div>
                         <div class="col-sm-12">
                             <label for="abc" class="form-label">Email</label>
@@ -96,16 +100,16 @@
                         </div>
                         <div class="col-sm-6">
                             <label for="abc" class="form-label">Role</label>
-                            <select class="form-control form-select" name=role required>
-                                <option value="Admin">Admin</option>
-                                <option value="Content Manager">Content Manager</option>
+                            <select class="form-control form-select" name="role" required>
+                                <option value="admin">Admin</option>
+                                <option value="content manager">Content Manager</option>
                             </select>
                         </div>
                         <div class="col-sm-6">
                             <label for="abc" class="form-label">Status</label>
                             <select class="form-control form-select" name=status required>
-                                <option value="enable">Enable</option>
-                                <option value="disable">Disable</option>
+                                <option value="1">Enable</option>
+                                <option value="0">Disable</option>
                             </select>
                         </div>
                         
@@ -133,10 +137,10 @@
     <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title  fw-bold" id="expeditLabel"> Admin</h5>
+            <h5 class="modal-title  fw-bold" id="expeditLabel"> Disable/Enable Admin</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form method="POST"  action="{{url("/vendor/admin/edit")}}" >
+        <form method="POST"  action="{{url("admin/changestatus")}}" >
         <div class="modal-body">
            
                 {{ csrf_field() }}
@@ -153,9 +157,9 @@
 
                         <div class="col-sm-12">
                             <label for="depone" class="form-label">Status</label>
-                            <select class="form-control form-select" name=status required>
-                                <option value="enable">Enable</option>
-                                <option value="disable">Disable</option>
+                            <select class="form-control form-select" name="status" required>
+                                <option value="1">Enable</option>
+                                <option value="0">Disable</option>
                             </select>
                         </div>
                         

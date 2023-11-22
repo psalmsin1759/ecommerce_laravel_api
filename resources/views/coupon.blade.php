@@ -22,11 +22,9 @@
                         <table id="myProjectTable" class="table table-hover align-middle mb-0" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Coupon Name</th>
                                     <th>Code</th>
                                     <th>Type</th>
-                                    <th>Discount</th>
-                                    <th>Total Amount</th>
+                                    <th>Value</th>
                                     <th>Status</th>
                                     <th>Start Date</th>
                                     <th>End Date</th>
@@ -35,14 +33,12 @@
                             </thead>
                             <tbody>
 
-                               {{--  @foreach($coupon as $item)
+                                @foreach($coupon as $item)
 
                                 <tr>
-                                    <td><span class="fw-bold ms-1">{{$item->coupon_name}}</span></td>
                                     <td><span class="fw-bold ms-1">{{$item->code}}</span></td>
                                     <td>{{$item->type}}</td>
-                                    <td>{{$item->discount}}</td>
-                                    <td>{{$item->total_amount}}</td>
+                                    <td>{{$item->value}}</td>
                                     @php
                                     if ($item->status == 1){
                                         echo '<td>Enable</td>';
@@ -50,18 +46,17 @@
                                         echo '<td>Disable</td>';
                                     }
                                     @endphp
-                                    <!--td><span class="badge bg-success">Active</span></td>-->
-                                    <td>{{$item->start_date}}</td>
+                                     <td>{{$item->start_date}}</td>
                                     <td>{{$item->end_date}}</td>
                                     <td>
                                             <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                <a href="{{url("/vendor/coupon/edit/" . $item->id)}}" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a>
+                                                {{-- <a href="{{url("/coupon/edit/" . $item->id)}}" class="btn btn-outline-secondary"><i class="icofont-edit text-success"></i></a> --}}
                                                 <button type="button" class="btn btn-outline-secondary delete-coupon" data-id="{{$item->id}}" ><i class="icofont-ui-delete text-danger"></i></button>
                                             </div>
                                         </td>
                                     </tr>
 
-                                @endforeach --}}
+                                @endforeach 
 
                            
                             </tbody>

@@ -28,7 +28,7 @@
                                     <th>Phone</th> 
                                     <th>State</th> 
                                     <th>Country</th>
-                                    <th>Actions</th>  
+                                    <th></th>  
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,8 +51,8 @@
                                     <td>{{$item->country}}</td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                            <button type="button" class="btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
-                                            <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
+                                            {{-- <button type="button" class="btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
+                                            <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button> --}}
                                         </div>
                                     </td>
                                 </tr>

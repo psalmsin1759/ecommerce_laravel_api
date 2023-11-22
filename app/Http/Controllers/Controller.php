@@ -14,6 +14,9 @@ use App\Models\Category;
 use App\Models\Slider;
 use App\Models\Banner;
 use App\Models\Store;
+use App\Models\Coupon;
+use App\Models\Admin;
+use Session;
 
 class Controller extends BaseController
 {
@@ -39,7 +42,7 @@ class Controller extends BaseController
         ->join('order_items', 'products.id', '=', 'order_items.product_id')
         ->groupBy('products.name')
         ->orderBy('quantity_sold', 'desc')
-        ->take(3) // Get the top 3 selling products
+        ->take(4) // Get the top 3 selling products
         ->get();
 
        
@@ -212,7 +215,8 @@ class Controller extends BaseController
     }
 
     public function coupon(){
-        return view ("coupon");
+        $coupon = Coupon::orderBy("created_at", "desc")->get();
+        return view ("coupon", compact("coupon"));
     }
 
     public function addCoupon(){
@@ -220,7 +224,8 @@ class Controller extends BaseController
     }
 
     public function mail(){
-        return view ("mail");
+        $customers = Customer::get();
+        return view ("mail", compact("customers"));
     }
 
     public function newsletter(){
@@ -228,7 +233,8 @@ class Controller extends BaseController
     }
 
     public function stocklist(){
-        return view ("stocklist");
+        $products = Product::orderBy("created_at", "desc")->with('images')->get();
+        return view ("stocklist", compact("products"));
     }
 
     public function returns(){
@@ -250,11 +256,15 @@ class Controller extends BaseController
     }
 
     public function profile(){
-        return view ("profile");
+        $id = Session::get('id');
+      
+        $admin = Admin::find($id);
+        return view ("profile", compact("admin"));
     }
 
     public function admin(){
-        return view ("admin");
+        $admin = Admin::orderBy("created_at", "desc")->get();
+        return view ("admin", compact("admin"));
     }
 
     public function logout(Request $request){

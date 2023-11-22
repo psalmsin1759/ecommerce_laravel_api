@@ -26,7 +26,7 @@ class BannerController extends Controller
             $destinationPath = "images/banner/";
             $file = $request->sliderimage;
             $extension = $file->getClientOriginalExtension();
-            $fileName = $title . rand(1111,9999) . "." . $extension;
+            $fileName =  rand(111111,999999) . "." . $extension;
 
            
             $path = preg_replace('/\s+/', '', $fileName);
@@ -58,7 +58,7 @@ class BannerController extends Controller
             $destinationPath = "images/banner/";
             $file = $request->editsliderimage;
             $extension = $file->getClientOriginalExtension();
-            $fileName = $edittitle . rand(1111,9999) . "." . $extension;
+            $fileName =  rand(111111,999999) . "." . $extension;
 
            
             $path = preg_replace('/\s+/', '', $fileName);

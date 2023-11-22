@@ -13,6 +13,13 @@ use App\Http\Requests\CheckoutRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use \App\Mail\OrderConfirmationMailHelper;
+use \App\Mail\MailHelper;
+use App\Jobs\SendOrderConfirmationEmail;
+use Illuminate\Support\Facades\Queue;
+use App\Models\Store;
+
 
 class OrderController extends Controller
 {
@@ -96,6 +103,11 @@ class OrderController extends Controller
                      
                  }
              }
+
+           
+            $this->sendOrderEmail($order, "Order Confirmation");
+
+            $this->sendAdminNotification($order);
     
              return response()->json([
                 'success'   => true,
@@ -107,15 +119,86 @@ class OrderController extends Controller
 
         }
 
+        
+
         return response()->json([
             'success'   => true,
-            'message'   => "success"
+            'message'   => "success",
+            'data' => 'duplicate'
         ]);
 
         
 
 
     }
+
+
+
+    private function sendOrderEmail($order, $subject){
+
+        $orderItems = DB::table('order_items')
+        ->join('products', 'product_id', '=', 'products.id')
+        ->leftJoin('product_images', function ($join) {
+            $join->on('products.id', '=', 'product_images.product_id')
+                ->whereRaw('product_images.id = (select id from product_images where product_id = products.id order by id limit 1)');
+        })
+        ->select('products.name', 'products.price', 'order_items.quantity as itemquantity', 'order_items.options', 'product_images.path')
+        ->where("order_items.order_id", $order->id)
+        ->get();
+        
+
+        //SendOrderConfirmationEmail::dispatch("Order Confirmation", $order, $orderItems)->onQueue('emails'); 
+       
+
+        Mail::to($order->email)->send(new OrderConfirmationMailHelper($subject, $order, $orderItems));
+       
+
+    }
+
+    private function sendAdminNotification($order){
+
+        $body = $this->adminOrderText($order);
+
+        $store = Store::find(1);
+        $adminEmail = $store ? $store->email : "samson_ude@yahoo.com";
+
+        Mail::to($adminEmail)->send(new MailHelper("New Order", $body));
+
+    }
+
+    private function adminOrderText ($order){
+
+        $body = "Hello Admin,<br/>
+        
+        You have new order with id #" . $order->orderid . " from  " . $order->first_name . " (". $order->email . ")<br/>
+
+        Login to the backend <a href='https://admin.houseofeppagelia.com'>https://admin.houseofeppagelia.com</a> to process this order 
+
+        Best regards";
+
+        return $body;
+
+    }
+
+    public function getOrderItems($orderid){
+        $orderItems = DB::table('order_items')
+        ->join('products', 'product_id', '=', 'products.id')
+        ->leftJoin('product_images', function ($join) {
+            $join->on('products.id', '=', 'product_images.product_id')
+                ->orderBy('product_images.id', 'asc');
+        })
+        ->select('products.name', 'products.price', 'order_items.quantity as itemquantity', 'order_items.options', 'product_images.path')
+        ->where("order_items.order_id", $orderid)
+        ->get();
+
+        return response()->json([
+            'success'   => true,
+            'message'   => "success",
+            'data' => $orderItems
+        ]);
+
+    }
+
 
 
     private function decreaseProductQuantity ($productID, $soldQuantity){
@@ -281,6 +364,11 @@ class OrderController extends Controller
         $order->save();
 
         //send email
+        if ($orderstatus != "Success"){
+            $this->sendOrderEmail($order, "Your order is " . $orderstatus);
+        }
+       
+        
 
         return redirect ("order/" . $orderid)->with('success','Order status updated to ' . $orderstatus);
     }

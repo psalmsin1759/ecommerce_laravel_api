@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Customer;
+use App\Models\Order;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
@@ -115,6 +116,18 @@ class CustomerController extends Controller
             'success'   => true,
             'message'   => "success",
         ]);
+
+    }
+
+    public function customerDetails($id){
+
+        $customer = Customer::find($id);
+        $customerEmail = $customer->email;
+
+        $order = Order::where("email", $customerEmail)->get();
+
+        return view ("customerdetails", compact("customer", "order"));
+
 
     }
 }

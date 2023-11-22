@@ -62,11 +62,8 @@
                     <div class="card-body">
                        
                             <div class="row g-3 align-items-center">
-                                <div class="col-md-6">
-                                    <label class="form-label">Coupons Name</label>
-                                    <input type="text" class="form-control" name="couponname" required="">
-                                </div>
-                                <div class="col-md-6">
+                                
+                                <div class="col-md-12">
                                     <label class="form-label">Coupons Code</label>
                                     <input type="text" class="form-control" name="code" required="">
                                 </div>
@@ -83,7 +80,7 @@
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="fixedamount" name="type">
+                                        <input class="form-check-input" type="radio" value="fixed" name="type">
                                         <label class="form-check-label">
                                             Fixed Amount
                                         </label>
@@ -91,8 +88,8 @@
                                 </div>
 
                                 <div id="discountdiv" class="col-md-12">
-                                    <label class="form-label">Discount(%)</label>
-                                    <input type="number" name="discount" class="form-control" required="" value="0">
+                                    <label class="form-label">Value</label>
+                                    <input type="number" name="value" class="form-control" required="" value="0">
                                 </div>
                                 <div id="amountdiv" class="col-md-12">
                                     <label class="form-label">Total Amount</label>

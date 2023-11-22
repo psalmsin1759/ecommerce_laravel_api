@@ -19,7 +19,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
+           {{--  <div class="col">
                 <div class="alert-danger alert mb-0">
                     <div class="d-flex align-items-center">
                         <div class="avatar rounded no-thumbnail bg-danger text-light"><i class="fa fa-credit-card fa-lg"></i></div>
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="col">
                 <div class="alert-warning alert mb-0">
                     <div class="d-flex align-items-center">
@@ -66,7 +66,7 @@
                     <div class="tab-pane fade show active" id="summery-today">
                         <div class="row g-1 g-sm-3 mb-3 row-deck">
                             
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                                 <div class="card">
                                     <div class="card-body py-xl-4 py-3 d-flex flex-wrap align-items-center justify-content-between">
                                         <div class="left-info">
@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                             
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+                           {{--  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
                                 <div class="card">
                                     <div class="card-body py-xl-4 py-3 d-flex flex-wrap align-items-center justify-content-between">
                                         <div class="left-info">
@@ -92,8 +92,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+                            </div> --}}
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                                 <div class="card">
                                     <div class="card-body py-xl-4 py-3 d-flex flex-wrap align-items-center justify-content-between">
                                         <div class="left-info">
@@ -251,9 +251,9 @@
 
                                 <tr>
                                     <td><strong>#Order-{{$item->orderid}}</strong></td>
-                                    <td><img class="avatar rounded" src="{{asset("dashboardassets/images/xs/avatar2.svg")}}" alt="">{{$item->first_name}} {{$item->last_name}}</td>
+                                    <td><img class="avatar rounded" src="{{asset("images/xs/avatar2.svg")}}" alt="">{{$item->first_name}} {{$item->last_name}}</td>
                                     <td><span class="badge bg-{{$color}}">{{$item->status}}</span></td>
-                                    <td>{{ Session::get('eszCurrencySymbol')}}{{$item->total_price}}</td>
+                                    <td>{{$item->total_price}}</td>
                                     <td>{{$item->payment_method}}</td>
                                     <td>{{$item->created_at}}</td>
                                     <td>

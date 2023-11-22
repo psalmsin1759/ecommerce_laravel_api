@@ -1,0 +1,32 @@
+<VirtualHost *:80>
+    ServerAdmin samson_ude@yahoo.com
+    DocumentRoot "/var/www/html/americabackend"
+    DirectoryIndex index.html index.php
+    ServerName americabackend.samsonude.dev
+    Redirect / https://americabackend.samsonude.dev
+
+
+<Directory "/var/www/html/americabackend">
+
+ Options Indexes FollowSymLinks
+        AllowOverride All
+        Order allow,deny
+    allow from all
+Require all granted
+
+
+ # BEGIN WordPress
+    <IfModule mod_rewrite.c>
+        RewriteEngine On
+        RewriteRule ^index\.php$ - [L]
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule . /index.php [L]
+    </IfModule>
+    # END WordPress
+
+</Directory>
+
+RewriteCond %{SERVER_NAME} =americabackend.samsonude.dev
+RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+</VirtualHost>

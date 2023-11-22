@@ -52,9 +52,9 @@
                                 <tr>
                                     <td></td>
                                     @if($item->images->count() > 0)
-                                        <td><img style="width: 67px; height: 100px" src="{{asset("images/product/" . $item->images->first()->path)}}" class="avatar lg rounded me-2" alt="profile-image"><span> {{$item->name}} </span></td>         
+                                        <td><a href="{{url("product/" . $item->id)}}" class="fw-bold"><img style="width: 67px; height: 100px" src="{{asset("images/product/" . $item->images->first()->path)}}" class="avatar lg rounded me-2" alt="profile-image"><span> {{$item->name}} </span></a></td>         
                                     @else
-                                        <td><img style="width: 67px; height: 100px" src="https://placehold.co/67x100.png" class="avatar lg rounded me-2" alt="profile-image"><span> {{$item->name}} </span></td>           
+                                        <td><a href="{{url("product/" . $item->id)}}" class="fw-bold"><img style="width: 67px; height: 100px" src="https://placehold.co/67x100.png" class="avatar lg rounded me-2" alt="profile-image"><span> {{$item->name}} </span></a></td>           
                                     @endif
                                     <td> @php
                                         if ($item->discounted_price != 0){

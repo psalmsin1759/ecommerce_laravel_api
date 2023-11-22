@@ -52,7 +52,7 @@
                             @include('flash-message')
                             <form method="POST"  action="{{url("/login")}}">
                                 {{ csrf_field() }}
-                                <a href="{{url("/")}}"><img src="{{asset("dashboardassets/images/nodmlogo.png")}}" class="avatar avatar-small mb-4 d-block mx-auto" alt=""></a>
+                                <a href="{{url("/")}}"><img src="{{asset("/images/nodmlogo.png")}}" class="avatar avatar-small mb-4 d-block mx-auto" alt=""></a>
                                 <h5 class="mb-3 text-center">Please sign in</h5>
                             
                                 <div class="form-floating mb-2">

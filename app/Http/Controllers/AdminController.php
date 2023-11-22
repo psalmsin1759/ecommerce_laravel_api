@@ -24,6 +24,8 @@ class AdminController extends Controller
                 return redirect("login")->with('error','Email and password combination does not match');
             }
 
+            $request->session()->put("access", 'YES');
+            $request->session()->put("id", $admin->id);
             $request->session()->put("name", $admin->first_name);
             $request->session()->put("email", $email);
             $request->session()->put("role", $admin->role);
@@ -74,14 +76,16 @@ class AdminController extends Controller
             'status' => 1
         ]);
 
-        $token = $admin->createToken('myapptoken')->plainTextToken;
+        return redirect ("/admin");
+
+        /* $token = $admin->createToken('myapptoken')->plainTextToken;
 
         return response()->json([
             'success'   => true,
             'message'   => "success",
             'data' => $admin,
             "token" => $token
-        ]);
+        ]); */
     }
 
     /**
@@ -111,8 +115,72 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Admin $admin)
+    public function destroy($id)
     {
-        //
+
+        Admin::destroy($id);
+        //return redirect ("/admin");
+    }
+
+    public function deleteAdmin(Request $request){
+
+        $id = $request->id;
+        $admin = Admin::find($id);
+        $role = $admin->role;
+        if ($role != "admin"){
+            Admin::destroy($id);
+        }
+       
+    }
+
+    public function changeAdminStatus(Request $request){
+
+        $adminid = $request->adminid;
+        $admin = Admin::find($adminid);
+        $admin->status =  $request->status;
+        $admin->save();
+
+        return redirect ("admin");
+    }
+
+    public function editAdminProfile(Request $request){
+
+        $id = $request->id;
+        $firstname = $request->firstname;
+        $lastname = $request->lastname;
+        
+
+        $admin = Admin::find($id);
+        $admin->first_name = $firstname;
+        $admin->last_name = $lastname;
+        $admin->save();
+
+        $request->session()->put("name", $firstname);
+
+        return redirect ("/profile");
+
+    }
+
+    public function changeAdminPassword(Request $request){
+
+        $id = $request->id;
+        $newpassword = $request->newpassword;
+        $confirmpassword = $request->confirmpassword;
+
+        
+
+        if ($newpassword == $confirmpassword){
+
+            $admin = Admin::find($id);
+            $admin->password = bcrypt($newpassword);
+            $admin->save();
+
+            return redirect("/profile")->with('success','Password Change was successful');;
+
+            
+
+        }else{
+            return redirect("/profile")->with('error','Password mismatch..Please try again!');;
+        }
     }
 }

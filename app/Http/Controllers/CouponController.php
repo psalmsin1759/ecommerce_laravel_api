@@ -6,6 +6,7 @@ use App\Http\Requests\StoreCouponRequest;
 use App\Http\Requests\UpdateCouponRequest;
 use App\Models\Coupon;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class CouponController extends Controller
 {
@@ -137,5 +138,41 @@ class CouponController extends Controller
             'success'   => true,
             'message'   => "success",
         ]);
+    }
+
+
+    public function addNewCoupon(Request $request){
+        
+        $code = $request->code;
+        $type = $request->type;
+        $value = $request->value;
+        
+       
+      
+        $status = $request->status;
+        $startdate = $request->startdate;
+        $enddate = $request->enddate;
+       
+        $startdate = date("Y-m-d", strtotime($startdate));
+        $enddate = date("Y-m-d", strtotime($enddate));
+
+        $coupon = new Coupon();
+        $coupon->code = $code;
+        $coupon->type = $type;
+        $coupon->value = $value;
+        $coupon->status = $status;
+        $coupon->start_date = $startdate;
+        $coupon->end_date = $enddate;
+        $coupon->save();
+
+        return redirect("coupon");
+    }
+
+
+    public function deleteNewCoupon(Request $request){
+        $id = $request->id;
+
+        Coupon::destroy($id);
+        return redirect("coupon");
     }
 }

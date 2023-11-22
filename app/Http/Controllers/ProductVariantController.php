@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductVariantRequest;
 use \App\Models\ProductVariant;
+use Illuminate\Support\Facades\DB;
 
 class ProductVariantController extends Controller
 {
@@ -64,5 +65,21 @@ class ProductVariantController extends Controller
             'success'   => true,
             'message'   => "success",
         ]);
+    }
+
+
+    public function getFilter(){
+
+        $options = DB::table('product_variants')
+        ->select('option', 'value')
+        ->distinct()
+        ->get();
+
+        return response()->json([
+            'success'   => true,
+            'message'   => "success",
+            'data' => $options
+        ]);
+    
     }
 }

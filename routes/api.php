@@ -22,6 +22,7 @@ use \App\Http\Controllers\StripePaymentIntentController;
 use \App\Http\Controllers\AdminController;
 use \App\Http\Controllers\StoreController;
 use \App\Http\Controllers\FaqsController;
+use \App\Http\Controllers\DeliveryMethodController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,7 @@ Route::resource('wishlists', WishlistController::class);
 Route::resource('orders', OrderController::class);
 Route::resource('orderitems', OrderItemController::class);
 Route::resource('productcategory', ProductCategoryController::class);
+Route::resource('deliverymethods', DeliveryMethodController::class);
 
 Route::get('getfeaturedproduct', [ProductController::class, "getfeaturedproduct"]);
 
@@ -64,6 +66,8 @@ Route::post('changepassword', [AuthController::class, "changepassword"]);
 
 Route::post('placeOrder', [OrderController::class, "placeOrder"]);
 
+Route::get('getOrderItems/{orderid}', [OrderController::class, "getOrderItems"]);
+
 Route::resource('admins', AdminController::class);
 
 Route::resource('store', StoreController::class);
@@ -78,3 +82,5 @@ Route::get("getOrderItemFromID/{orderID}",[ OrderController::class, "getOrderIte
 Route::post("contactform", [CustomerController::class, "contactForm"]);
 
 Route::resource('faqs', FaqsController::class);
+
+Route::get("getFilter",[ ProductVariantController::class, "getFilter"]);

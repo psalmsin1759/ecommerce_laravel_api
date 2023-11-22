@@ -26,7 +26,7 @@ class SliderController extends Controller
             $destinationPath = "images/slider/";
             $file = $request->sliderimage;
             $extension = $file->getClientOriginalExtension();
-            $fileName = $title . rand(1111,9999) . "." . $extension;
+            $fileName =  rand(111111,999999) . "." . $extension;
 
             $path = preg_replace('/\s+/', '', $fileName);
 
@@ -59,7 +59,7 @@ class SliderController extends Controller
             $destinationPath = "images/slider/";
             $file = $request->sliderimage;
             $extension = $file->getClientOriginalExtension();
-            $fileName = $title . rand(1111,9999) . "." . $extension;
+            $fileName =  rand(111111,999999) . "." . $extension;
 
             $path = preg_replace('/\s+/', '', $fileName);
 
