@@ -32,12 +32,12 @@ RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 </VirtualHost>
 
 
-sudo certbot --apache -d america.samsonude.dev
+sudo certbot --apache -d samsonude.dev
 
 
 <VirtualHost *:80>
-    ServerName america.samsonude.dev
-    ServerAlias america.samsonude.dev
+    ServerName samsonude.dev
+    ServerAlias samsonude.dev
 
     ProxyRequests Off
     ProxyPreserveHost On
@@ -47,11 +47,11 @@ sudo certbot --apache -d america.samsonude.dev
         Require all granted
     </Proxy>
 
-    ProxyPass / http://127.0.0.1:5050/
-    ProxyPassReverse / http://127.0.0.1:5050
+    ProxyPass / http://127.0.0.1:4000/
+    ProxyPassReverse / http://127.0.0.1:4000
 RewriteEngine on
-RewriteCond %{SERVER_NAME} =america.samsonude.dev [OR]
-RewriteCond %{SERVER_NAME} =america.samsonude.dev
+RewriteCond %{SERVER_NAME} =samsonude.dev [OR]
+RewriteCond %{SERVER_NAME} =samsonude.dev
 RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 </VirtualHost>
 

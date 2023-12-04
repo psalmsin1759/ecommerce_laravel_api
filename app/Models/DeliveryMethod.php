@@ -12,6 +12,9 @@ class DeliveryMethod extends Model
     protected $fillable = [
         "name",
         "description",
-        "amount"
+        "amount",
+        "sort_order",
+        "status",
+        "default_method"
     ];
 }

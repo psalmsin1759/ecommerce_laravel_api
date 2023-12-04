@@ -82,4 +82,17 @@ class ProductVariantController extends Controller
         ]);
     
     }
+
+
+    public function getAllProductVariants(){
+
+        $options = ProductVariant::orderBy("option", "asc")->get();
+
+        return response()->json([
+            'success'   => true,
+            'message'   => "success",
+            'data' => $options
+        ]);
+
+    }
 }

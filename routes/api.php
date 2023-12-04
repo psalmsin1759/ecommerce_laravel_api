@@ -84,3 +84,7 @@ Route::post("contactform", [CustomerController::class, "contactForm"]);
 Route::resource('faqs', FaqsController::class);
 
 Route::get("getFilter",[ ProductVariantController::class, "getFilter"]);
+
+Route::get("getDeliveryMethods",[ DeliveryMethodController::class, "getDeliveryMethods"]);
+
+Route::get("getAllProductVariants",[ ProductVariantController::class, "getAllProductVariants"]);

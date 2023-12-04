@@ -12,13 +12,14 @@ use \App\Http\Controllers\StoreController;
 use \App\Http\Controllers\CustomerController;
 use \App\Http\Controllers\CouponController;
 use \App\Http\Controllers\NewsletterController;
+use \App\Http\Controllers\DeliveryMethodController;
 
 Route::get('/', [Controller::class, "login"]);
 
 Route::get('/login', [Controller::class, "login"]);
 Route::post('/login', [AdminController::class, "loginAction"]);
 
-// Route::group(['middleware' => 'checkadmin'], function (){
+ Route::group(['middleware' => 'checkadmin'], function (){
 
     Route::get('/index', [Controller::class, "index"]);
 
@@ -132,6 +133,13 @@ Route::post('/login', [AdminController::class, "loginAction"]);
 
     Route::resource('admins', AdminController::class);
 
+    Route::get("delivery", [DeliveryMethodController::class, "showView"]);
+
+    Route::post("delivery/add", [DeliveryMethodController::class, "addDeliveryMethod"]);
+
+    Route::post("delivery/edit", [DeliveryMethodController::class, "editDeliveryMethod"]);
+
+    Route::post("deleteDelivery", [DeliveryMethodController::class, "deleteDeliveryMethod"]);
 
 
-// });
+ });

@@ -10,6 +10,7 @@ class StripePaymentIntentController extends Controller
 {
     public function create(Request $request){
 
+        
         $amount = $request->amount;
         $totalAmountInCents = $amount * 100;
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));

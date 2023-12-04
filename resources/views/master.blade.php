@@ -130,6 +130,17 @@
                             <li><a class="ms-link" href="{{url("/returns")}}">Returns</a></li>  --}}
                         </ul>
                     </li>
+
+                    <li class="collapsed">
+                        <a class="m-link" data-bs-toggle="collapse" data-bs-target="#menu-delivery" href="#">
+                        <i class="icofont-vehicle-delivery-van fs-5"></i> <span>Delivery Methods</span> <span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>
+                        <!-- Menu: Sub menu ul -->
+                        <ul class="sub-menu collapse" id="menu-delivery">
+                            <li><a class="ms-link" href="{{url("/delivery")}}"> Delivery</a></li>
+                            {{-- <li><a class="ms-link" href="{{url("/returns")}}">Returns</a></li>  --}}
+                        </ul>
+                    </li>
+                   
                     {{-- <li class="collapsed">
                         <a class="m-link" data-bs-toggle="collapse" data-bs-target="#menu-Componentsone" href="#"><i
                                 class="icofont-ui-calculator"></i> <span>Delivery Fee</span> <span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>
@@ -785,12 +796,42 @@
                     }
                 });
 
+                // delete delivery
+                $(".delete-delivery").click(function (e) {
+                    e.preventDefault();
+
+                    var ele = $(this);
+
+                    if(confirm("Are you sure")) {
+                        $.ajax({
+                            url: '{{ url('deleteDelivery') }}',
+                            method: "POST",
+                            data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id")},
+                            success: function (response) {
+                                //console.log(response);
+                                window.location.reload();
+                            }
+                        });
+                    }
+                });
+
                 //edit slider 
                 $(document).on('click', '.edit-slider', function() {
                     
                     $('#fid').val($(this).data('id'));
                     $('#edittitle').val($(this).data('title'));
                     $('#editsubtitle').val($(this).data('subtitle'));
+                    $('#editsortorder').val($(this).data('sort'));
+            
+                });
+
+                 //edit delivery 
+                 $(document).on('click', '.edit-delivery', function() {
+                    
+                    $('#fid').val($(this).data('id'));
+                    $('#editname').val($(this).data('name'));
+                    $('#editamount').val($(this).data('amount'));
+                    $('#editdescription').val($(this).data('description'));
                     $('#editsortorder').val($(this).data('sort'));
             
                 });
