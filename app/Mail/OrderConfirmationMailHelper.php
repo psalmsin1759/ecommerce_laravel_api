@@ -35,7 +35,7 @@ class OrderConfirmationMailHelper extends Mailable
     public function build()
     {
         return $this
-        ->from($address = "mail@houseofeppagelia.com", $name = "Eppagelia")
+        ->from($address = "no-reply@houseofeppagelia.com", $name = "Eppagelia")
         ->subject($this->subject)
         ->view('mail.orderconfirmation');
     }

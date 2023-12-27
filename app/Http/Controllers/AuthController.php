@@ -7,6 +7,8 @@ use \App\Http\Requests\LoginRequest;
 use \App\Http\Requests\RegisterRequest;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
+use \App\Mail\MailHelper;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -121,6 +123,8 @@ class AuthController extends Controller
             $code = $customer->code;
             $body = $this->forgotPasswordText ($name, $code);
             // $this->sendMail("Forgot Password", $body, $email);
+            Mail::to($email)->send(new MailHelper("Forgot Password", $body));
+
             $response = [
                 'success' => true,
                 'message' => "success",
@@ -136,22 +140,48 @@ class AuthController extends Controller
     }
 
     private function forgotPasswordText ($name, $code){
-        $body = "Dear " . $name . ",
+        $body = "Dear " . $name . ",<br/><br/>
 
-        We noticed that you recently requested to reset your password. No worries - we've got you covered!
+        We noticed that you recently requested to reset your password. No worries - we've got you covered!<br/><br/>
         
-        To reset your password, simply click on the link below:
+        To reset your password, simply click on the link below:<br/><br/>
         
-        <a href='https://eppagelia.com/reset/" . $code ."'>Reset Password Link</a>
+        <a href='https://houseofeppagelia.com/reset/" . $code ."'>Reset Password Link</a><br/><br/>
         
-        If you didn't request to reset your password, please ignore this email. Your account remains secure, and no action is needed.
+        If you didn't request to reset your password, please ignore this email. Your account remains secure, and no action is needed.<br/><br/>
         
-        The link will be active for the next 24 hours. If you encounter any issues or need further assistance, feel free to contact our support team at support@eppagelia.com.
+        The link will be active for the next 24 hours. If you encounter any issues or need further assistance, feel free to contact our support team at support@eppagelia.com.<br/><br/>
         
-        Thank you for using Eppagelia. We're here to ensure your experience is smooth and hassle-free!
+        Thank you for using Eppagelia. We're here to ensure your experience is smooth and hassle-free!<br/><br/>
         
-        Best regards,
+        Best regards,<br/>
         The Eppagelia Team";
         return $body;
+    }
+
+
+    public function resetpassword(Request $request){
+        $code = $request->code;
+        $password = $request->password;
+
+        $customer = Customer::where("code", $code)->first();
+        if ($customer){
+            $customer->password = bcrypt($password);
+            $customer->save();
+    
+            $response = [
+                'success' => true,
+                'message' => "success",
+            ];  
+            return response($response, 201);
+        }else{
+
+            $response = [
+                'success' => false,
+                'message' => "Invalid URL",
+            ];  
+            return response($response, 201);
+
+        }
     }
 }

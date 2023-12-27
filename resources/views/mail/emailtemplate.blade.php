@@ -184,13 +184,14 @@
             </td>
         </tr>
         <tr>
+            
             <td class="container">
 
                 <!-- Message start -->
                 <table>
                     <tr>
                         <td class="content footer" align="center">
-                            <p> Copyright © 2023 <a href="https://houseofeppagelia.com">House of Eppagelia</a></p>
+                            <p> Copyright © <a href="https://houseofeppagelia.com">House of Eppagelia</a></p>
                             <p><a href="mailto:info@houseofeppagelia.com">info@houseofeppagelia.com</a> | <a href="https://houseofeppagelia.com/unsubscribe">Unsubscribe</a></p>
                         </td>
                     </tr>

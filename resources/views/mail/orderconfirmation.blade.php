@@ -845,7 +845,7 @@
                                                             <td align="center"
                                                                 style="font-family:'Roboto', Arial, Helvetica, sans-serif;font-size: 13px;color: #dadada;line-height: 19px;">
                                                                 This email was sent to : {{ $order->email }}<br>
-                                                                For any questions please send to info@houseofeppagelia.com
+                                                                For any questions please send to houseofeppagelia@gmail.com
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -860,7 +860,7 @@
 
                                                                         <td align="center"
                                                                             style="font-family:'Roboto', Arial, Helvetica, sans-serif;font-size: 13px;color: #dadada;line-height: 20px;text-decoration: underline">
-                                                                            <a href="http://inventroapp.com/privacy"
+                                                                            <a href=""
                                                                                 target="_blank"
                                                                                 style="color: #dadada">Privacy
                                                                                 Policy</a>
@@ -870,7 +870,7 @@
                                                                             |</td>
                                                                         <td align="center"
                                                                             style="font-family:'Roboto', Arial, Helvetica, sans-serif;font-size: 13px;color: #dadada;line-height: 20px;text-decoration: underline">
-                                                                            <a href="http://inventroapp.com/contact"
+                                                                            <a href=""
                                                                                 target="_blank"
                                                                                 style="color: #dadada">Help Center</a>
                                                                         </td>

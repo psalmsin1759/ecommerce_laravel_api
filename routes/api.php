@@ -62,6 +62,7 @@ Route::post("changeCustomerPassword", [CustomerController::class, "changeCustome
 Route::post('login', [AuthController::class, "webLogin"]);
 Route::post('register', [AuthController::class, "register"]);
 Route::post('forgotpassword', [AuthController::class, "forgotpassword"]);
+Route::post('resetpassword', [AuthController::class, "resetpassword"]);
 Route::post('changepassword', [AuthController::class, "changepassword"]);
 
 Route::post('placeOrder', [OrderController::class, "placeOrder"]);

@@ -34,7 +34,7 @@ class MailHelper extends Mailable
     public function build()
     {
         return $this
-        ->from($address = "info@houseofeppagelia.com", $name = "Eppagelia")
+        ->from($address = "no-reply@houseofeppagelia.com", $name = "Eppagelia")
         ->subject($this->mysubject)
         ->view('mail.emailtemplate');
     }

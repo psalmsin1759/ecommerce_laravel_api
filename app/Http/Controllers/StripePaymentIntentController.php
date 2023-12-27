@@ -18,7 +18,7 @@ class StripePaymentIntentController extends Controller
         try {
             $intent = PaymentIntent::create([
                 'amount' => $totalAmountInCents,
-                'currency' => 'usd', // Change this to your preferred currency
+                'currency' => 'CAD', // Change this to your preferred currency
             ]);
             return response()->json(['clientSecret' => $intent->client_secret]);
 
