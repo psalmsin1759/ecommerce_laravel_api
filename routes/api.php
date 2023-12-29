@@ -53,6 +53,8 @@ Route::resource('deliverymethods', DeliveryMethodController::class);
 
 Route::get('getfeaturedproduct', [ProductController::class, "getfeaturedproduct"]);
 
+Route::get('getHomeProducts', [ProductController::class, "getHomeProducts"]);
+
 Route::get('applyCoupon/{coupon}', [CouponController::class, "applyCoupon"]);
 
 Route::post('create-payment-intent', [StripePaymentIntentController::class, "create"]);

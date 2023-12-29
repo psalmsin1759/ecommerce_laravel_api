@@ -67,6 +67,20 @@ class ProductController extends Controller
         ]);
     }
 
+    public function getHomeProducts(){
+        $products = Product::query()
+        ->with('images', 'variants')
+        ->orderBy("sort_order", "asc")
+        ->take(12)
+        ->get();
+
+        return response()->json([
+            'success'   => true,
+            'message'   => "success",
+            "data" => $products
+        ]);
+    }
+
     public function addProduct(Request $request){
 
         $name = $request->productname;
